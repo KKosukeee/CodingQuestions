@@ -36,6 +36,12 @@ class Solution:
           [9,20],
           [15,7]
         ]
+
+        Args:
+            root: root node for a binary tree
+
+        Returns:
+            list<list<int>>: two dimensional array containing level-order nodes
         """
         # Check if root is None, return an empty array if so
         if not root:
