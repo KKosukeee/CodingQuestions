@@ -18,6 +18,10 @@ class ListNode:
         self.next = None
 
 class Solution:
+    """
+    Runtime: 36 ms, faster than 85.15% of Python3 online submissions for Swap Nodes in Pairs.
+    Memory Usage: 13 MB, less than 5.04% of Python3 online submissions for Swap Nodes in Pairs.
+    """
     def recursive_approach(self, head):
         """
         Recursive approach
