@@ -59,6 +59,6 @@ class Solution:
 
             # update current.next to be skip
             current.next = skip
-            current = current.next
+            current = skip
 
         return dummy.next
