@@ -29,7 +29,7 @@ class Solution:
             # Loop for each word in wordDict
             for word in wordDict:
 
-                # If s.startswith(word), then call recurively with s sliced
+                # If s.startswith(word), then call recursively with s sliced
                 if s.startswith(word):
                     words.append(word)
 
