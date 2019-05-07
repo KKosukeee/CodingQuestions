@@ -89,15 +89,27 @@ class Solution:
         Returns:
             int: value for a maximum width
         """
+        # Initialize a queue
         queue = [(root, 0, 0)]
+
+        # Initialize all values as zeros
         cur_depth = left = ans = 0
+
+        # Loop through the queue
         for node, depth, pos in queue:
             if node:
+                # Append left node with depth added by one, and the position
                 queue.append((node.left, depth + 1, pos * 2))
+
+                # Append right node with depth added by one, and the position which is left + 1
                 queue.append((node.right, depth + 1, pos * 2 + 1))
+
+                # If the depth has been different, then the first node is the left-most node
                 if cur_depth != depth:
                     cur_depth = depth
                     left = pos
+
+                # Update answer for each iteration
                 ans = max(pos - left + 1, ans)
 
         return ans
