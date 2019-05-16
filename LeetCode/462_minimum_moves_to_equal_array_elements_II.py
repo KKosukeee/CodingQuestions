@@ -5,9 +5,9 @@ https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/
 
 class Solution:
     """
-    Runtime: 48 ms, faster than 54.52% of Python3 online submissions for Minimum Moves to Equal
+    Runtime: 44 ms, faster than 94.62% of Python3 online submissions for Minimum Moves to Equal
         Array Elements II.
-    Memory Usage: 14.1 MB, less than 54.90% of Python3 online submissions for Minimum Moves to
+    Memory Usage: 14.1 MB, less than 63.21% of Python3 online submissions for Minimum Moves to
         Equal Array Elements II.
     """
     def minMoves2(self, nums):
@@ -42,7 +42,6 @@ class Solution:
         moves = 0
 
         for i in range(len(nums)):
-            if i != middle:
-                moves += abs(nums[i] - value)
+            moves += abs(nums[i] - value)
 
         return moves
