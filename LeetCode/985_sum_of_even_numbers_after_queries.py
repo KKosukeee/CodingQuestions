@@ -4,6 +4,12 @@ https://leetcode.com/problems/sum-of-even-numbers-after-queries/
 """
 
 class Solution:
+    """
+    Runtime: 180 ms, faster than 67.33% of Python3 online submissions for Sum of Even Numbers
+        After Queries.
+    Memory Usage: 17.6 MB, less than 56.24% of Python3 online submissions for Sum of Even Numbers
+        After Queries.
+    """
     def sumEvenAfterQueries(self, A, queries):
         """
         We have an array A of integers, and an array queries of queries.
