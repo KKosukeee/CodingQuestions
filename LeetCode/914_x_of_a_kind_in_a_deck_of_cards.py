@@ -1,0 +1,60 @@
+"""
+Solution for 914. X of a Kind in a Deck of Cards
+https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/
+"""
+from collections import Counter
+from fractions import gcd
+from functools import reduce
+
+class Solution:
+    """
+    Runtime: 156 ms, faster than 75.66% of Python3 online submissions for X of a Kind in a Deck of Cards.
+    Memory Usage: 14.1 MB, less than 7.32% of Python3 online submissions for X of a Kind in a Deck of Cards.
+    """
+    def hasGroupsSizeX(self, deck):
+        """
+        In a deck of cards, each card has an integer written on it.
+
+        Return true if and only if you can choose X >= 2 such that it is possible to split the entire deck into 1 or more groups of cards, where:
+
+        Each group has exactly X cards.
+        All the cards in each group have the same integer.
+
+
+        Example 1:
+
+        Input: [1,2,3,4,4,3,2,1]
+        Output: true
+        Explanation: Possible partition [1,1],[2,2],[3,3],[4,4]
+        Example 2:
+
+        Input: [1,1,1,2,2,2,3,3]
+        Output: false
+        Explanation: No possible partition.
+        Example 3:
+
+        Input: [1]
+        Output: false
+        Explanation: No possible partition.
+        Example 4:
+
+        Input: [1,1]
+        Output: true
+        Explanation: Possible partition [1,1]
+        Example 5:
+
+        Input: [1,1,2,2,2,2]
+        Output: true
+        Explanation: Possible partition [1,1],[2,2],[2,2]
+
+        Note:
+
+        1 <= deck.length <= 10000
+        0 <= deck[i] < 10000
+        Args:
+            deck: list<int>
+
+        Returns:
+            bool:
+        """
+        return reduce(lambda a, b: gcd(a, b), Counter(deck).values()) > 1
