@@ -55,9 +55,9 @@ class Solution:
         1 <= d, f <= 30
         1 <= target <= 1000
         Args:
-            d: int
-            f: int
-            target: int
+            d(int): int
+            f(int): int
+            target(int): int
 
         Returns:
             int
@@ -67,8 +67,8 @@ class Solution:
             """
             backtracking
             Args:
-                d: int
-                t: int
+                d(int): int
+                t(int): int
 
             Returns:
                 int:
