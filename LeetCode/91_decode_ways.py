@@ -2,6 +2,7 @@
 Solution for 91. Decode Ways
 https://leetcode.com/problems/decode-ways/
 """
+from functools import lru_cache
 
 class Solution:
     """
@@ -53,3 +54,89 @@ class Solution:
                 arr[i] = arr[i + 1]
 
         return arr[0]
+
+    def brute_force(self, s: str) -> int:
+        """
+        A brute force solution that runs in O(2^N) in time and space
+
+        Args:
+            s(str):
+
+        Returns:
+            int:
+
+        """
+        if len(s) <= 0:
+            return 0
+        if s[0] == '0':
+            return 0
+        if int(s) <= 26:
+            return 1 if int(s) < 10 or s[-1] == '0' else 2
+        if int(s[:2]) <= 26:
+            return self.brute_force(s[1:]) + self.brute_force(s[2:])
+        else:
+            return self.brute_force(s[1:])
+
+    def top_down(self, s: str) -> int:
+        """
+        A top-down solution that runs in O(N) in time and space
+
+        Args:
+            s(str):
+
+        Returns:
+            int:
+
+        """
+        @lru_cache(None)
+        def rec(s):
+            if len(s) <= 0:
+                return 0
+            if s[0] == '0':
+                return 0
+            if int(s) <= 26:
+                return 1 if int(s) < 10 or s[-1] == '0' else 2
+            if int(s[:2]) <= 26:
+                return rec(s[1:]) + rec(s[2:])
+            else:
+                return rec(s[1:])
+
+        return rec(s)
+
+    def bottom_up(self, s: str) -> int:
+        """
+        A bottom-up solution that runs in O(N) in time and space
+
+        Args:
+            s:
+
+        Returns:
+
+        """
+        dp = [1 if s[0] != '0' else 0]
+        for i in range(1, len(s)):
+            ways = dp[-1] if s[i] != '0' else 0
+            if s[i - 1] == '1' or (s[i - 1] == '2' and s[i] <= '6'):
+                ways += dp[i - 2] if i - 2 >= 0 else 1
+            dp.append(ways)
+        return dp[-1]
+
+    def optimal(self, s: str) -> int:
+        """
+        An optimal solution thar runs in O(N) in time and O(1) in space
+
+        Args:
+            s(str):
+
+        Returns:
+            int:
+
+        """
+        pprev, prev = 0, 1 if s[0] != '0' else 0
+        for i in range(1, len(s)):
+            ways = prev if s[i] != '0' else 0
+            if s[i - 1] == '1' or (s[i - 1] == '2' and s[i] <= '6'):
+                ways += pprev if i - 2 >= 0 else 1
+            pprev = prev
+            prev = ways
+        return prev

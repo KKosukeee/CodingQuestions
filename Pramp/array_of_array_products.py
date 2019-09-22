@@ -46,6 +46,7 @@ def array_of_array_products(arr):
 
     input:  arr = [2, 7, 3, 4]
     output: [84, 24, 56, 42] # by calculating: [7*3*4, 2*3*4, 2*7*4, 2*7*3]
+
     Args:
         arr: list of integers to calculate array of array products
 
