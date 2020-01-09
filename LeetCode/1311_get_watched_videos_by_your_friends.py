@@ -63,6 +63,53 @@ class Solution:
     Returns:
 
     """
+    return self.short_bfs(watchedVideos, friends, id, level)
+
+  def bfs(self, watchedVideos: List[List[str]], friends: List[List[int]],
+          id: int, level: int) -> List[str]:
+    """
+    A solution using a BFS that runs in O(N+Mlog(M)) where N = # of friends and
+    M = # of videos in time and O(N+M) in space
+
+    Args:
+      watchedVideos:
+      friends:
+      id:
+      level:
+
+    Returns:
+
+    """
+    q, visited = deque([(id, level)]), set([id])
+    videos = []
+    while q:
+      node, remain = q.popleft()
+      if remain == 0:
+        videos.extend(watchedVideos[node])
+        continue
+      for friend in friends[node]:
+        if friend not in visited:
+          q.append((friend, remain - 1))
+          visited.add(friend)
+
+    counter = Counter(videos)
+    return sorted(counter.keys(), key=lambda x: (counter[x], x))
+
+  def short_bfs(self, watchedVideos: List[List[str]], friends: List[List[int]],
+                id: int, level: int) -> List[str]:
+    """
+    A solution using a BFS that runs in O(N+Mlog(M)) where N = # of friends and
+    M = # of videos in time and O(N+M) in space
+
+    Args:
+      watchedVideos:
+      friends:
+      id:
+      level:
+
+    Returns:
+
+    """
     visited, q = set([id]), deque([id])
     for _ in range(level):
       q = {j for i in q for j in friends[i] if j not in visited}
